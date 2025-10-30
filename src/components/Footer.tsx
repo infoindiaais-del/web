@@ -13,19 +13,19 @@ const Footer = () => {
     {
       icon: Instagram,
       label: 'Instagram',
-      href: 'https://instagram.com/strangerartistaditya',
+      href: 'https://www.instagram.com/stranger_artists_aditya?igsh=MXA2MDQxODFzYWRlOQ==',
       color: 'hover:text-pink-600'
     },
     {
       icon: Youtube,
       label: 'YouTube',
-      href: 'https://youtube.com/strangerartistaditya',
+      href: 'https://youtube.com/@strangerartistsaditya7030?si=xsVYnDcjRYNyrl6Q',
       color: 'hover:text-red-600'
     },
     {
       icon: Share2,
       label: 'Portfolio',
-      href: 'https://behance.net/strangerartistaditya',
+      href: 'https://youtube.com/@strangerartistsaditya7030?si=xsVYnDcjRYNyrl6Q',
       color: 'hover:text-blue-600'
     }
   ]
@@ -120,7 +120,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-beige/20 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div className="flex items-center space-x-2 text-beige/60 text-sm">
-            <span>© {currentYear} Stranger Artist Aditya</span>
+            <span>© {currentYear} Avnish Anil Chaurasiya</span>
             <span>•</span>
             <span>Crafted with</span>
             <Heart className="w-4 h-4 text-red-500" />
@@ -128,8 +128,8 @@ const Footer = () => {
           </div>
           
           <div className="flex items-center space-x-6 text-sm text-beige/60">
-            <a href="#" className="hover:text-gold transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-gold transition-colors">Terms of Service</a>
+            <a href="https://www.linkedin.com/in/avnish-chaurasiya/?lipi=urn%3Ali%3Apage%3Ad_flagship3_feed%3B6tY1jhVQT3eYPe67wRWfyQ%3D%3D" className="hover:text-gold transition-colors">Privacy Policy</a>
+            <a href="https://www.linkedin.com/in/avnish-chaurasiya/?lipi=urn%3Ali%3Apage%3Ad_flagship3_feed%3B6tY1jhVQT3eYPe67wRWfyQ%3D%3D" className="hover:text-gold transition-colors">Terms of Service</a>
             <span>Made in India</span>
           </div>
         </div>

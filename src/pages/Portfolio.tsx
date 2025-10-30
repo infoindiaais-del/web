@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { Filter } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Filter, X } from 'lucide-react'
 
 const Portfolio = () => {
   const [activeFilter, setActiveFilter] = useState('all')
+  const [selectedItem, setSelectedItem] = useState<any>(null)
 
   const filters = [
     { key: 'all', label: 'All Works' },
@@ -18,56 +19,55 @@ const Portfolio = () => {
       id: 1,
       category: 'sketches',
       title: 'Eternal Gaze',
-      description: 'Charcoal portrait capturing human emotion',
-      year: 2024
+      description: 'Charcoal portrait capturing deep human emotion.',
+      year: 2024,
+      image: '/images/portfolio/sketch1.jpg'
     },
     {
       id: 2,
       category: 'paintings',
       title: 'Sunset Dreams',
-      description: 'Abstract landscape with vibrant colors',
-      year: 2024
+      description: 'Abstract landscape with vibrant sunset hues and serene gradients.',
+      year: 2024,
+      image: '/images/portfolio/painting1.jpg'
     },
     {
       id: 3,
       category: 'interiors',
       title: 'Modern Serenity',
-      description: 'Minimalist living space design',
-      year: 2023
+      description: 'Minimalist interior concept blending natural tones and comfort.',
+      year: 2023,
+      image: '/images/portfolio/interior1.jpg'
     },
     {
       id: 4,
       category: 'custom',
       title: 'Corporate Vision',
-      description: 'Custom mural for office space',
-      year: 2024
+      description: 'A custom mural designed to represent a company’s identity and creativity.',
+      year: 2024,
+      image: '/images/portfolio/custom1.jpg'
     },
     {
       id: 5,
-      category: 'sketches',
-      title: 'Urban Rhythm',
-      description: 'Ink sketch series of city life',
-      year: 2023
-    },
-    {
-      id: 6,
       category: 'paintings',
       title: 'Ocean Memories',
-      description: 'Mixed media seascape painting',
-      year: 2023
-    },
+      description: 'A mixed-media painting inspired by the fluidity of ocean waves.',
+      year: 2023,
+      image: '/images/portfolio/painting2.jpg'
+    }
   ]
 
-  const filteredItems = activeFilter === 'all' 
-    ? portfolioItems 
-    : portfolioItems.filter(item => item.category === activeFilter)
+  const filteredItems =
+    activeFilter === 'all'
+      ? portfolioItems
+      : portfolioItems.filter((item) => item.category === activeFilter)
 
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="pt-24 pb-16 min-h-screen bg-ivory"
+      className="pt-24 pb-20 min-h-screen bg-ivory"
     >
       <div className="container mx-auto px-6">
         {/* Header */}
@@ -77,15 +77,15 @@ const Portfolio = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h1 className="font-playfair text-4xl md:text-5xl text-charcoal mb-6">
+          <h1 className="font-playfair text-4xl md:text-5xl text-charcoal mb-4">
             My Portfolio
           </h1>
-          <p className="text-xl text-charcoal/80 max-w-2xl mx-auto">
-            A collection of my artistic works and interior design projects
+          <p className="text-lg text-charcoal/80 max-w-2xl mx-auto">
+            Explore my finest works — from sketches and paintings to interiors and custom commissions.
           </p>
         </motion.div>
 
-        {/* Filter Buttons */}
+        {/* Filters */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -102,7 +102,7 @@ const Portfolio = () => {
               className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
                 activeFilter === filter.key
                   ? 'bg-gold text-charcoal shadow-lg'
-                  : 'bg-beige text-charcoal/70 hover:bg-gold/50'
+                  : 'bg-beige text-charcoal/70 hover:bg-gold/40'
               }`}
             >
               {filter.label}
@@ -113,51 +113,35 @@ const Portfolio = () => {
         {/* Portfolio Grid */}
         <motion.div
           layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {filteredItems.map((item, index) => (
-            <motion.div
-              key={item.id}
-              layout
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group cursor-pointer"
-            >
-              <div className="bg-charcoal/5 rounded-2xl overflow-hidden border border-gold/20 shadow-lg hover:shadow-xl transition-shadow">
-                {/* Image Placeholder */}
-                <div className="aspect-[4/5] bg-gradient-to-br from-emerald/20 to-gold/20 flex items-center justify-center relative overflow-hidden">
-                  <div className="text-center p-6">
-                    <div className="text-gold font-playfair text-2xl mb-2 group-hover:scale-105 transition-transform">
-                      {item.title}
-                    </div>
-                    <div className="text-charcoal/60 text-sm mb-4">
-                      {item.description}
-                    </div>
-                    <div className="text-gold text-xs font-semibold">
-                      {item.year}
-                    </div>
-                  </div>
-                  
-                  {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-charcoal/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <div className="text-ivory text-center p-6">
-                      <h3 className="font-playfair text-xl font-semibold mb-2">
-                        {item.title}
-                      </h3>
-                      <p className="text-beige text-sm">
-                        {item.description}
-                      </p>
-                      <button className="mt-4 px-4 py-2 bg-gold text-charcoal rounded-full text-sm font-semibold hover:bg-gold/90 transition-colors">
-                        View Details
-                      </button>
-                    </div>
-                  </div>
+          <AnimatePresence>
+            {filteredItems.map((item, index) => (
+              <motion.div
+                key={item.id}
+                layout
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                onClick={() => setSelectedItem(item)}
+                className="group relative cursor-pointer rounded-2xl overflow-hidden shadow-md hover:shadow-2xl border border-gold/20"
+              >
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-charcoal/70 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-center items-center text-center p-6">
+                  <h3 className="text-gold font-playfair text-2xl mb-2">{item.title}</h3>
+                  <p className="text-beige text-sm mb-3">{item.description}</p>
+                  <span className="text-xs text-gold/70">{item.year}</span>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </motion.div>
 
         {/* Empty State */}
@@ -165,7 +149,7 @@ const Portfolio = () => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-center py-12"
+            className="text-center py-16"
           >
             <p className="text-charcoal/60 text-lg">
               No projects found in this category. Please check back soon!
@@ -173,6 +157,48 @@ const Portfolio = () => {
           </motion.div>
         )}
       </div>
+
+      {/* 🔍 Modal for Item Details */}
+      <AnimatePresence>
+        {selectedItem && (
+          <motion.div
+            key="modal"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm flex justify-center items-center z-50 p-6"
+            onClick={() => setSelectedItem(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="bg-ivory rounded-3xl overflow-hidden max-w-3xl w-full relative shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setSelectedItem(null)}
+                className="absolute top-4 right-4 text-charcoal hover:text-gold transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+              <img
+                src={selectedItem.image}
+                alt={selectedItem.title}
+                className="w-full h-[400px] object-cover"
+              />
+              <div className="p-8 text-center">
+                <h3 className="text-3xl font-playfair text-charcoal mb-3">
+                  {selectedItem.title}
+                </h3>
+                <p className="text-charcoal/70 text-lg mb-4">{selectedItem.description}</p>
+                <p className="text-gold font-semibold">{selectedItem.year}</p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   )
 }
