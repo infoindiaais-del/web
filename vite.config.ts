@@ -1,8 +1,14 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// Update base path to match your repo name
+// ✅ For Vercel & GitHub Pages — ensures correct base path
 export default defineConfig({
   plugins: [react()],
-  base: '/web/',  // If your repo is 'web', else '/stranger-artist-aditya/'
+  build: {
+    outDir: 'dist',
+  },
+  server: {
+    port: 5173,
+    open: true,
+  },
 })
